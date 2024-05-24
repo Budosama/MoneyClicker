@@ -1,0 +1,250 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f9;
+    color: #333;
+    overflow: auto; /* Asegurar que las animaciones no se desborden */
+}
+
+.game-container, .upgrade, #timer {
+    border-radius: 10px; /* Puedes ajustar el valor según tu preferencia */
+} 
+
+button {
+    border-radius: 10px; /* Puedes ajustar el valor según tu preferencia */
+}
+
+.upgrade, #timer {
+    border: 2px solid black; /* Grosor y color del borde */
+    padding: 10px; /* Espaciado interno para separar el contenido del borde */
+    margin-bottom: 10px; /* Espaciado inferior para separar los elementos */
+}
+
+#title {
+    font-size: 48px; /* Tamaño de fuente grande */
+    color: #ff5722; /* Color naranja */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
+    padding: 20px; /* Espaciado interno */
+    background-color: #ffe0b2; /* Fondo naranja claro */
+    border-radius: 10px; /* Bordes redondeados */
+    display: inline-block; /* Para que el fondo se ajuste al texto */
+}
+
+#game {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #4caf50; /* Cambiar el color de fondo del contenedor principal a un verde brillante */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: auto; 
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.1s;
+}
+
+#clicker {
+    font-size: 20px;
+    background-color: #388e3c; /* Cambiar el color de fondo del botón a un verde más oscuro */
+    color: white;
+    border: none;
+}
+
+#clicker:hover {
+    background-color: #45a049;
+}
+
+.upgrade {
+    margin: 10px 0;
+}
+
+.buy-upgrade {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+}
+
+.buy-upgrade:hover {
+    background-color: #007bb5;
+}
+
+/* Estilo para el contador de oro */
+#gold-container {
+    font-size: 36px;
+    color: #FFD700; /* Color dorado */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente llamativa */
+}
+
+/* Estilo para el prefijo del contador de oro */
+#gold-prefix {
+    font-size: 35px; /* Ajustar el tamaño del prefijo */
+    color: #FFD700; /* Color dorado */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente llamativa */
+    margin-right: 5px; /* Añadir un espacio entre el prefijo y el valor */
+}
+
+/* Estilo para el contador de oro */
+#gold {
+    font-size: 42px; /* Aumentar el tamaño del texto del gold */
+    color: #FFD700; /* Color dorado */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente llamativa */
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 2px solid #000;
+}
+
+.info-row div {
+    flex: 1;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#gold-per-second-container {
+    text-align: center;
+}
+
+#gold-per-click-container {
+    text-align: center;
+}
+
+#timer {
+    font-size: 20px; /* Ajustar el tamaño del temporizador */
+    color: red; /* Cambiar el color del temporizador */
+}
+
+/* Animación al hacer clic en el botón */
+@keyframes clickAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#clicker:active {
+    animation: clickAnimation 0.3s ease;
+}
+
+/* Estilo para el temporizador */
+.timer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: red;
+    z-index: 1; /* Asegurar que esté sobre otros elementos dentro del div game */
+}
+
+.gold-gain {
+    position: absolute;
+    animation: fadeUp 1s ease-out;
+    color: gold;
+    font-size: 30px; /* Hacer el texto más grande */
+    pointer-events: none;
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+.buy-upgrade {
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.buy-upgrade:disabled {
+    background-color: #cccccc;
+}
+
+.buy-upgrade.bought {
+    animation: bounce 0.5s;
+    transform: scale(1.1);
+}
+
+.story {
+    font-weight: bold;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Nuevas clases para los efectos visuales de fondo */
+@keyframes goldJump {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Estilos para los efectos visuales de fondo */
+.click-jump {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('img/gold.jpg'); /* Cambiar por la imagen que desees */
+    background-size: cover;
+    animation: goldJump 1s ease-in-out infinite;
+}
+
+.auto1-jump {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('img/billete.png'); /* Cambiar por la imagen que desees */
+    background-size: cover;
+    animation: goldJump 1s ease-in-out infinite;
+}
+
+.auto2-jump {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('img/lingote.jpg'); /* Cambiar por la imagen que desees */
+    background-size: cover;
+    animation: goldJump 1s ease-in-out infinite;
+}
+
+.auto3-jump {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('img/cripto.jpg'); /* Cambiar por la imagen que desees */
+    background-size: cover;
+    animation: goldJump 1s ease-in-out infinite;
+}
+
+.auto4-jump {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('img/mansion.png'); /* Cambiar por la imagen que desees */
+    background-size: cover;
+    animation: goldJump 1s ease-in-out infinite;
+}
