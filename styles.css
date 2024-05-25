@@ -6,7 +6,7 @@ body {
     overflow: auto; /* Asegurar que las animaciones no se desborden */
 }
 
-.game-container, .upgrade, #timer {
+.game-container, .upgrade {
     border-radius: 10px; /* Puedes ajustar el valor según tu preferencia */
 } 
 
@@ -14,7 +14,7 @@ button {
     border-radius: 10px; /* Puedes ajustar el valor según tu preferencia */
 }
 
-.upgrade, #timer {
+.upgrade {
     border: 2px solid black; /* Grosor y color del borde */
     padding: 10px; /* Espaciado interno para separar el contenido del borde */
     margin-bottom: 10px; /* Espaciado inferior para separar los elementos */
@@ -58,20 +58,6 @@ button {
     background-color: #45a049;
 }
 
-.upgrade {
-    margin: 10px 0;
-}
-
-.buy-upgrade {
-    background-color: #008CBA;
-    color: white;
-    border: none;
-}
-
-.buy-upgrade:hover {
-    background-color: #007bb5;
-}
-
 /* Estilo para el contador de oro */
 #gold-container {
     font-size: 36px;
@@ -94,6 +80,56 @@ button {
     font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente llamativa */
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+.progress-container {
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 25%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.progress-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+.upgrade-history {
+    list-style-type: none;
+    padding: 0;
+}
+.upgrade-history li {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.upgrade-history li:last-child {
+    margin-bottom: 0;
+}
+.game-container {
+    width: 45%;
+    padding: 10px;
+}
+.upgrade-animation-container {
+    position: relative;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 25%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.upgrade-animation {
+    max-width: 100%;
+    height: auto;
+    display: none;
+}
+
 .info-row {
     display: flex;
     justify-content: space-between;
@@ -111,6 +147,11 @@ button {
     font-weight: bold;
 }
 
+.timer {
+    font-size: 20px;
+    color: red;
+}
+
 #gold-per-second-container {
     text-align: center;
 }
@@ -122,6 +163,52 @@ button {
 #timer {
     font-size: 20px; /* Ajustar el tamaño del temporizador */
     color: red; /* Cambiar el color del temporizador */
+}
+
+.upgrade-header {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+.upgrade-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upgrade {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #ffe0b2;
+    width: 90%;
+    max-width: 500px;
+}
+
+.upgrade p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.buy-upgrade {
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buy-upgrade:hover {
+    background-color: #007bb5;
+}
+
+.cost {
+    font-weight: bold;
 }
 
 /* Animación al hacer clic en el botón */
@@ -139,16 +226,6 @@ button {
 
 #clicker:active {
     animation: clickAnimation 0.3s ease;
-}
-
-/* Estilo para el temporizador */
-.timer {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    color: red;
-    z-index: 1; /* Asegurar que esté sobre otros elementos dentro del div game */
 }
 
 .gold-gain {

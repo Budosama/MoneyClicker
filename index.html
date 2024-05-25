@@ -7,38 +7,52 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="game" class="game-container">
-        <div class="info-row">
-            <div id="timer" class="timer">00:00:00</div>
-            <div id="gold-per-second-container">Gold/second: $ <span id="gold-per-second">0</span></div>
-            <div id="gold-per-click-container">Gold/click: $ <span id="gold-per-click">1</span></div>
+    <div class="container">
+        <div class="progress-container">
+            <h2>Progreso</h2>
+            <ul id="upgrade-history" class="upgrade-history">
+                <!-- Aquí se mostrará el historial de mejoras -->
+            </ul>
         </div>
 
-        <h1 id="title">Money Clicker</h1>
-        <p><span id="gold-prefix">Gold: </span><span id="gold">$ 0</span></p>
-        <button id="clicker">¡¡TRABAJAR DURO!!</button>
-        <h2>------------------ Mejoras ------------------</h2>
-        <div id="upgrades">
-            <div class="upgrade" data-type="click" data-cost="50" data-increment="1" data-level="0">
-                <p class="story">Mesada de los Padres (Nivel 0)</p>
-                <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">50</span></button>
+        <div id="game" class="game-container">
+            <div class="info-row">              
+                <div id="gold-per-second-container">Gold/second: $ <span id="gold-per-second">0</span></div>
+                <div id="timer" class="timer">00:00:00</div>
+                <div id="gold-per-click-container">Gold/click: $ <span id="gold-per-click">1</span></div>
             </div>
-            <div class="upgrade" data-type="auto1" data-cost="100" data-increment="1" data-level="0"> 
-                <p class="story">Ahorro para tus Sueños (Nivel 0)</p>
-                <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">100</span></button>
+
+            <h1 id="title">Money Clicker</h1>
+            <p><span id="gold-prefix">Gold: </span><span id="gold">$ 0</span></p>
+            <button id="clicker">¡¡TRABAJAR DURO!!</button>
+
+            <h2 class="upgrade-header">Mejoras</h2>
+            <div id="upgrades" class="upgrade-container">
+                <div class="upgrade" data-type="click" data-cost="50" data-increment="1" data-level="0">
+                    <p class="story">Mesada de los Padres (Nivel 0)</p>
+                    <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">50</span></button>
+                </div>
+                <div class="upgrade" data-type="auto1" data-cost="100" data-increment="1" data-level="0"> 
+                    <p class="story">Ahorro para tus Sueños (Nivel 0)</p>
+                    <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">100</span></button>
+                </div>
+                <div class="upgrade" data-type="auto2" data-cost="300" data-increment="5" data-level="0">
+                    <p class="story">Primer Empleo de Verano (Nivel 0)</p>
+                    <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">300</span></button>
+                </div>
+                <div class="upgrade" data-type="auto3" data-cost="500" data-increment="10" data-level="0">
+                    <p class="story">Inversión en Bolsa (Nivel 0)</p>
+                    <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">500</span></button>
+                </div>
+                <div class="upgrade" data-type="auto4" data-cost="1000" data-increment="20" data-level="0">
+                    <p class="story">Negocio Online (Nivel 0)</p>
+                    <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">1000</span></button>
+                </div>
             </div>
-            <div class="upgrade" data-type="auto2" data-cost="300" data-increment="5" data-level="0">
-                <p class="story">Primer Empleo de Verano (Nivel 0)</p>
-                <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">300</span></button>
-            </div>
-            <div class="upgrade" data-type="auto3" data-cost="500" data-increment="10" data-level="0">
-                <p class="story">Inversión en Bolsa (Nivel 0)</p>
-                <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">500</span></button>
-            </div>
-            <div class="upgrade" data-type="auto4" data-cost="1000" data-increment="20" data-level="0">
-                <p class="story">Negocio Online (Nivel 0)</p>
-                <button class="buy-upgrade" disabled>Comprar por $ <span class="cost">1000</span></button>
-            </div>
+        </div>
+
+        <div class="upgrade-animation-container" id="upgrade-animation-container">
+            <img class="upgrade-animation" src="" alt="Upgrade Animation">
         </div>
     </div>
     <script src="script.js"></script>

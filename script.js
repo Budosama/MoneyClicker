@@ -85,7 +85,7 @@ function updateTimer() {
 
 document.getElementById('clicker').addEventListener('click', () => {
     gold += goldPerClick;
-    document.getElementById('gold').textContent = `$ ${gold}`; // Agregar el signo "$" aquí
+    document.getElementById('gold').textContent = `$ ${gold}`;
     updateUpgradeButtons();
     showGoldGainAnimation(goldPerClick);
 });
@@ -126,31 +126,19 @@ function showBackgroundEffects(type) {
         backgroundEffect.classList.add('click-jump');
     }
 
-    // Función para verificar si el efecto de fondo se superpone con el contenedor del juego
-    function isOverlapping(rect1, rect2) {
-        return !(rect1.right < rect2.left || 
-                 rect1.left > rect2.right || 
-                 rect1.bottom < rect2.top || 
-                 rect1.top > rect2.bottom);
-    }
+    // Dimensiones y posición aleatoria para el efecto de fondo dentro del contenedor de animaciones
+    const upgradeAnimationContainer = document.getElementById('upgrade-animation-container');
+    const upgradeAnimationContainerRect = upgradeAnimationContainer.getBoundingClientRect();
+    const upgradeAnimationContainerStyle = window.getComputedStyle(upgradeAnimationContainer);
+    const upgradeAnimationContainerLeft = parseInt(upgradeAnimationContainerStyle.getPropertyValue('left'));
+    const upgradeAnimationContainerTop = parseInt(upgradeAnimationContainerStyle.getPropertyValue('top'));
+    let x = Math.random() * (upgradeAnimationContainerRect.width - 50); // Ancho del efecto de fondo
+    let y = Math.random() * (upgradeAnimationContainerRect.height - 50); // Alto del efecto de fondo
 
-    // Dimensiones y posición aleatoria para el efecto de fondo
-    const gameContainer = document.getElementById('game');
-    const gameRect = gameContainer.getBoundingClientRect();
-    let x = Math.random() * (window.innerWidth - 30); // Ancho del efecto de fondo
-    let y = Math.random() * (window.innerHeight - 30); // Alto del efecto de fondo
-
-    // Verificar si el efecto de fondo se superpone con el contenedor del juego
-    while (isOverlapping({left: x, top: y, right: x + 30, bottom: y + 30}, gameRect)) {
-        // Si se superpone, recalculamos las coordenadas
-        x = Math.random() * (window.innerWidth - 30);
-        y = Math.random() * (window.innerHeight - 30);
-    }
-
-    // Agregar el efecto de fondo al body con las nuevas coordenadas
-    backgroundEffect.style.left = `${x}px`;
-    backgroundEffect.style.top = `${y}px`;
-    document.body.appendChild(backgroundEffect);
+    // Agregar el efecto de fondo al contenedor de animaciones con las nuevas coordenadas
+    backgroundEffect.style.left = `${upgradeAnimationContainerLeft + x}px`;
+    backgroundEffect.style.top = `${upgradeAnimationContainerTop + y}px`;
+    upgradeAnimationContainer.appendChild(backgroundEffect);
 }
 
 document.querySelectorAll('.buy-upgrade').forEach(button => {
@@ -187,16 +175,24 @@ document.querySelectorAll('.buy-upgrade').forEach(button => {
                 document.getElementById('gold-per-second').textContent = goldPerSecond;
             }
             level++;
-            document.getElementById('gold').textContent = `$ ${gold}`; // Agregar el signo "$" aquí          
+            document.getElementById('gold').textContent = `$ ${gold}`;         
             upgrade.setAttribute('data-level', level);
-            const newCost = Math.floor(cost * 1.5);
-            costElement.textContent = newCost;
-            upgrade.setAttribute('data-cost', newCost);
+            if (level === 10) {
+                button.textContent = "Nivel MAX";
+            } else {
+                const newCost = Math.floor(cost * 1.5);
+                costElement.textContent = newCost;
+                upgrade.setAttribute('data-cost', newCost);
+            }
             updateUpgradeButtons();
-            button.classList.add('bought'); // Add animation class
-        
-            // Mostrar efectos visuales de fondo basados en el tipo de mejora
+            button.classList.add('bought');        
             showBackgroundEffects(type);
+
+            // Actualizar historial de mejoras
+            const historyList = document.getElementById('upgrade-history');
+            const listItem = document.createElement('li');
+            listItem.textContent = textElement.textContent;
+            historyList.appendChild(listItem);
         }        
     });
 });
@@ -218,13 +214,9 @@ function updateUpgradeButtons() {
 setInterval(() => {
     if (goldPerSecond > 0) {
         gold += goldPerSecond;
-        document.getElementById('gold').textContent = `$ ${gold}`; // Agregar el signo "$" aquí
+        document.getElementById('gold').textContent = `$ ${gold}`;
         updateUpgradeButtons();
         showGoldGainAnimation(goldPerSecond);
     }
-    updateTimer(); // Llamar a la función para actualizar el temporizador
+    updateTimer();
 }, 1000);
-    
-
-
-
